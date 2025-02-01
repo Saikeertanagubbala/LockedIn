@@ -14,7 +14,11 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-image: url('homepage-photo.jpg'); /* Path to your image */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #282c34; /* Fallback color */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -22,6 +26,32 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.header-buttons {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: black;
+  width: 12rem;
+  height: 2rem;
+  margin: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.username-input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
 }
 
 .App-link {
