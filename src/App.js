@@ -87,14 +87,11 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>LockedIn.</h1>
-
+    <div className="preferences-form">
+      <header className="preferences-form">
         {user ? (
           <div>
             <h2>Welcome, {user.email}</h2>
-            <button onClick={handleSignOut}>Sign Out</button>
 
             {/* Form to input/update user details */}
             <div>
@@ -112,8 +109,15 @@ function App() {
                 onChange={(e) => setMajor(e.target.value)}
               />
 
-              <div>
+              <div className='availability'>
                 <h4>Availability</h4>
+                <label>Sunday: </label>
+                <input
+                  type="text"
+                  value={availability.tuesday}
+                  onChange={(e) => setAvailability({ ...availability, tuesday: e.target.value })}
+                  placeholder="e.g. 1-3 PM"
+                />
                 <label>Monday: </label>
                 <input
                   type="text"
@@ -130,7 +134,34 @@ function App() {
                   onChange={(e) => setAvailability({ ...availability, tuesday: e.target.value })}
                   placeholder="e.g. 1-3 PM"
                 />
-                {/* Repeat for other days... */}
+                <label>Wednesday: </label>
+                <input
+                  type="text"
+                  value={availability.tuesday}
+                  onChange={(e) => setAvailability({ ...availability, tuesday: e.target.value })}
+                  placeholder="e.g. 1-3 PM"
+                />
+                <label>Thursday: </label>
+                <input
+                  type="text"
+                  value={availability.tuesday}
+                  onChange={(e) => setAvailability({ ...availability, tuesday: e.target.value })}
+                  placeholder="e.g. 1-3 PM"
+                />
+                <label>Friday: </label>
+                <input
+                  type="text"
+                  value={availability.tuesday}
+                  onChange={(e) => setAvailability({ ...availability, tuesday: e.target.value })}
+                  placeholder="e.g. 1-3 PM"
+                />
+                <label>Saturday: </label>
+                <input
+                  type="text"
+                  value={availability.tuesday}
+                  onChange={(e) => setAvailability({ ...availability, tuesday: e.target.value })}
+                  placeholder="e.g. 1-3 PM"
+                />
               </div>
 
               <div>
@@ -144,6 +175,7 @@ function App() {
 
               <button onClick={saveUserData}>Save Data</button>
             </div>
+            <button onClick={handleSignOut}>Sign Out</button>
           </div>
         ) : (
           <div className='login-button-container'>
