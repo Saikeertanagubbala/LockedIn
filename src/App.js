@@ -6,6 +6,11 @@ import { getFirestore, doc, setDoc } from 'firebase/firestore';
 const db = getFirestore();
 
 function App() {
+  <div className="App">
+    <header className="App-header">
+      <h1>LockedIn.</h1>
+    </header>
+  </div>
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [user, setUser] = useState(null);
@@ -87,39 +92,44 @@ function App() {
   }, []);
 
   return (
-    <div className="preferences-form">
-      <header className="preferences-form">
+    <div>
+      <header>
         {user ? (
-          <div>
-            <h2>Welcome, {user.email}</h2>
+          <div className="preferences-form">
+            <h2 className = 'preferences-header'>Welcome, {user.email}</h2>
 
             {/* Form to input/update user details */}
-            <div>
+            <div className = 'availability'>
               <h3>Update your details:</h3>
-              <input
-                type="text"
-                placeholder="Year"
+              <select className = 'preferences'
                 value={year}
                 onChange={(e) => setYear(e.target.value)}
-              />
-              <input
+              >
+                <option value="">Select Year</option>
+                <option value="Freshman">Freshman</option>
+                <option value="Sophomore">Sophomore</option>
+                <option value="Junior">Junior</option>
+                <option value="Senior">Senior</option>
+                <option value="Grad Student">Grad Student</option>
+              </select>
+              <input className = 'preferences'
                 type="text"
                 placeholder="Major"
                 value={major}
                 onChange={(e) => setMajor(e.target.value)}
               />
 
-              <div className='availability'>
-                <h4>Availability</h4>
+              <div  className='availability2'>
+                <h3 className = 'centerit'>Availability</h3>
                 <label>Sunday: </label>
-                <input
+                <input className = 'preferences'
                   type="text"
                   value={availability.tuesday}
                   onChange={(e) => setAvailability({ ...availability, tuesday: e.target.value })}
                   placeholder="e.g. 1-3 PM"
                 />
                 <label>Monday: </label>
-                <input
+                <input className = 'preferences'
                   type="text"
                   value={availability.monday}
                   onChange={(e) => setAvailability({ ...availability, monday: e.target.value })}
@@ -128,35 +138,35 @@ function App() {
                 {/* Repeat for other days... */}
 
                 <label>Tuesday: </label>
-                <input
+                <input className = 'preferences'
                   type="text"
                   value={availability.tuesday}
                   onChange={(e) => setAvailability({ ...availability, tuesday: e.target.value })}
                   placeholder="e.g. 1-3 PM"
                 />
                 <label>Wednesday: </label>
-                <input
+                <input className = 'preferences'
                   type="text"
                   value={availability.tuesday}
                   onChange={(e) => setAvailability({ ...availability, tuesday: e.target.value })}
                   placeholder="e.g. 1-3 PM"
                 />
                 <label>Thursday: </label>
-                <input
+                <input className = 'preferences'
                   type="text"
                   value={availability.tuesday}
                   onChange={(e) => setAvailability({ ...availability, tuesday: e.target.value })}
                   placeholder="e.g. 1-3 PM"
                 />
                 <label>Friday: </label>
-                <input
+                <input className = 'preferences'
                   type="text"
                   value={availability.tuesday}
                   onChange={(e) => setAvailability({ ...availability, tuesday: e.target.value })}
                   placeholder="e.g. 1-3 PM"
                 />
                 <label>Saturday: </label>
-                <input
+                <input className = 'preferences'
                   type="text"
                   value={availability.tuesday}
                   onChange={(e) => setAvailability({ ...availability, tuesday: e.target.value })}
@@ -164,21 +174,22 @@ function App() {
                 />
               </div>
 
-              <div>
-                <h4>Courses</h4>
-                <input
+              <div className = 'courses'>
+                <h3>Courses</h3>
+                <input className = 'preferences'
                   type="text"
                   placeholder="Add a course"
                   onChange={(e) => setCourses(e.target.value.split(','))}
                 />
               </div>
-
-              <button onClick={saveUserData}>Save Data</button>
+              <button className = 'preferences' onClick={saveUserData}>Save Data</button>
             </div>
-            <button onClick={handleSignOut}>Sign Out</button>
+            <button className = 'sign-out' onClick={handleSignOut}>Sign Out</button>
           </div>
         ) : (
-          <div className='login-button-container'>
+          <div className = 'App-header'>
+            <header><b>LockedIn.</b></header>
+            <br></br>
             <input className="header-buttons"
               type="email"
               placeholder="Email"
@@ -191,7 +202,6 @@ function App() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-
             <button className="header-buttons" onClick={handleSignIn}>Sign In</button>
             <button className="header-buttons" onClick={handleSignUp}>Create Account</button>
 
