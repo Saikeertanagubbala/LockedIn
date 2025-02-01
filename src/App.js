@@ -146,22 +146,22 @@ function App() {
             </div>
           </div>
         ) : (
-          <div>
-            <input
+          <div className='login-button-container'>
+            <input className="header-buttons"
               type="email"
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <input
+            <input className="header-buttons"
               type="password"
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
 
-            <button onClick={handleSignIn}>Sign In</button>
-            <button onClick={handleSignUp}>Create Account</button>
+            <button className="header-buttons" onClick={handleSignIn}>Sign In</button>
+            <button className="header-buttons" onClick={handleSignUp}>Create Account</button>
 
             {error && <p style={{ color: 'red' }}>{error}</p>}
           </div>
