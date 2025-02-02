@@ -5,6 +5,7 @@ import Home from './Home';
 import Matches from './Matches';
 import Users from './Users';
 import Settings from './Settings';
+import logo from './LockedIn.svg'; // Import the logo image
 
 function AppContent() {
   const location = useLocation(); 
@@ -14,7 +15,9 @@ function AppContent() {
       {/* Conditionally render navbar if current path is not the home route */}
       {location.pathname !== '/' && (
         <nav className="navbar">
-          <div className="logo">LockedIn</div>
+          <Link to="/matches">
+            <img src={logo} alt="LockedIn Logo" className="logo" />
+          </Link>
           <ul className="nav-links">
             <li>
               <Link to="/matches">Matches</Link>
