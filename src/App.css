@@ -166,7 +166,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url('preferences.jpg'); /* Path to your image */
+  background-image: url('preferences.jpg'); 
   background-size: cover;
   background-color: rgb(69, 64, 64);
   min-height: 100vh;
