@@ -59,6 +59,14 @@ function Home() {
     }
   };
 
+  const handleHomeAvailabilityChange = (day, times) => {
+    const availabilityArray = times.split(',').map((time) => time.trim());
+    setAvailability((prevAvailability) => ({
+      ...prevAvailability,
+      [day]: availabilityArray,
+    }));
+  };
+
   // Save user data to Firestore and then navigate to /matches
   const saveUserData = async () => {
     const currentUser = auth.currentUser;
@@ -149,22 +157,22 @@ function Home() {
                   <label>Sunday: </label>
                   <input className="preferences"
                     type="text"
-                    value={availability.sunday}
-                    onChange={(e) => setAvailability({ ...availability, sunday: e.target.value })}
+                    value={availability.sunday.join(', ')}
+                    onChange={(e) => handleHomeAvailabilityChange('sunday', e.target.value)}
                     placeholder="e.g. 1-3 PM"
                   />
                   <label>Monday: </label>
                   <input className="preferences"
                     type="text"
-                    value={availability.monday}
-                    onChange={(e) => setAvailability({ ...availability, monday: e.target.value })}
+                    value={availability.monday.join(', ')}
+                    onChange={(e) => handleHomeAvailabilityChange('monday', e.target.value)}
                     placeholder="e.g. 2-4 PM"
                   />
                   <label>Tuesday: </label>
                   <input className="preferences"
                     type="text"
-                    value={availability.tuesday}
-                    onChange={(e) => setAvailability({ ...availability, tuesday: e.target.value })}
+                    value={availability.tuesday.join(', ')}
+                    onChange={(e) => handleHomeAvailabilityChange('tuesday', e.target.value)}
                     placeholder="e.g. 1-3 PM"
                   />
                 </div>
@@ -172,29 +180,29 @@ function Home() {
                   <label>Wednesday: </label>
                   <input className="preferences"
                     type="text"
-                    value={availability.wednesday}
-                    onChange={(e) => setAvailability({ ...availability, wednesday: e.target.value })}
+                    value={availability.wednesday.join(', ')}
+                    onChange={(e) => handleHomeAvailabilityChange('wednesday', e.target.value)}
                     placeholder="e.g. 1-3 PM"
                   />
                   <label>Thursday: </label>
                   <input className="preferences"
                     type="text"
-                    value={availability.thursday}
-                    onChange={(e) => setAvailability({ ...availability, thursday: e.target.value })}
+                    value={availability.thursday.join(', ')}
+                    onChange={(e) => handleHomeAvailabilityChange('thursday', e.target.value)}
                     placeholder="e.g. 1-3 PM"
                   />
                   <label>Friday: </label>
                   <input className="preferences"
                     type="text"
-                    value={availability.friday}
-                    onChange={(e) => setAvailability({ ...availability, friday: e.target.value })}
+                    value={availability.friday.join(', ')}
+                    onChange={(e) => handleHomeAvailabilityChange('friday', e.target.value)}
                     placeholder="e.g. 1-3 PM"
                   />
                   <label>Saturday: </label>
                   <input className="preferences"
                     type="text"
-                    value={availability.saturday}
-                    onChange={(e) => setAvailability({ ...availability, saturday: e.target.value })}
+                    value={availability.saturday.join(', ')}
+                    onChange={(e) => handleHomeAvailabilityChange('saturday', e.target.value)}
                     placeholder="e.g. 1-3 PM"
                   />
                 </div>
