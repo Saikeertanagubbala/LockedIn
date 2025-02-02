@@ -1,0 +1,59 @@
+/* Users.css */
+
+.users-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 30px;
+    margin: 20px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    grid-auto-rows: minmax(150px, auto); 
+  }
+  
+  .user-card {
+    border: 1px solid #ccc; 
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    text-align: left;
+  }
+  
+  .user-info h3 {
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .user-info p {
+    margin: 5px 0;
+    color: #555;
+  }
+  
+  .user-info ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  .user-info li {
+    margin: 5px 0;
+  }
+  
+  .loading {
+    font-size: 18px;
+    color: #333;
+  }
+  
+  @media screen and (max-width: 1024px) {
+    .users-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .users-container {
+      grid-template-columns: 1fr;
+    }
+  }
+  
