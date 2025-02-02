@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { getFirestore, doc, getDoc, collection, getDocs } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 import './Matches.css';
 
 const db = getFirestore();
@@ -10,6 +11,8 @@ function Matches() {
   const [user, setUser] = useState(null);
   const [userData, setUserData] = useState(null);
   const [matches, setMatches] = useState([]);
+  const navigate = useNavigate(); // Initialize navigation
+  
 
   // Helper function to order the days of the week
   const getOrderedDays = (availability) => {
@@ -51,6 +54,7 @@ function Matches() {
 
   const rankMatches = useCallback((userData, potentialMatches) => {
     return potentialMatches.map((match) => {
+      // eslint-disable-next-line
       const matchPercentage = calculateMatchPercentage(userData, match.data);
       return { ...match, matchPercentage };
     }).sort((a, b) => b.matchPercentage - a.matchPercentage);
