@@ -49,7 +49,12 @@ function Users() {
       ) : (
         users.map((user, index) => (
           <div key={index} className="user-card">
-          {clickedCards[index] ? (
+            <img 
+            src= '/profilepic.webp'
+            alt="pfp" 
+            style={{ width: "100px", height: "100px", objectFit: "cover", margin: "10px auto", display: "block"}} 
+          />
+{clickedCards[index] ? (
               <div className="congrats-message">Congrats! Reach out to {user.firstName} at: @{user.email}</div>
             ) : (
               <div className="user-info">
