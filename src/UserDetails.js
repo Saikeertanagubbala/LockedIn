@@ -14,6 +14,8 @@ function UserDetails() {
   // State for user profile information
   const [year, setYear] = useState('');
   const [major, setMajor] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [availability, setAvailability] = useState({
     monday: [], tuesday: [], wednesday: [], thursday: [], friday: [], saturday: [], sunday: []
   });
@@ -88,10 +90,23 @@ function UserDetails() {
         {user ? (
           <div className="preferences-form">
             <h2 className="preferences-header">Welcome, {user.email}</h2>
-
             {/* Form to input/update user details */}
             <div className="availability">
               <h3>Update your details:</h3>
+              <div className = 'name-input'>
+              <input className = 'preferences' 
+                type="text"
+                placeholder="First Name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+              <input className = 'preferences' 
+                type="text"
+                placeholder="Last Name"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+              />
+              </div>
               <select
                 className="preferences"
                 value={year}
