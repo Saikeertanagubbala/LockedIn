@@ -55,7 +55,7 @@ function Users() {
             style={{ width: "100px", height: "100px", objectFit: "cover", margin: "10px auto", display: "block"}} 
           />
 {clickedCards[index] ? (
-              <div className="congrats-message">Congrats! Reach out to {user.firstName} at: @{user.email}</div>
+              <div className="congrats-message">Congrats! Reach out to {user.firstName} at: @{user.firstName}{user.lastName}@gmail.com</div>
             ) : (
               <div className="user-info">
                 <h3>{user.firstName} {user.lastName}</h3>
