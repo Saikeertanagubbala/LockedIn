@@ -11,11 +11,11 @@ function App() {
       <div className="App">
         <nav className="navbar">
           <div className="logo">LockedIn</div>
-          <ul className="nav-links">
+           <ul className="nav-links">
             <li><Link to="/matches">Matches</Link></li>
             <li><Link to="/users">Users</Link></li>
             <li><Link to="/settings">Settings</Link></li>
-          </ul>
+          </ul>  
         </nav>
         <Routes>
           <Route path="/" element={<Home />} />
