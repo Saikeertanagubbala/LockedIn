@@ -49,9 +49,21 @@ body {
 
 .settings {
   padding: 2rem;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.504);
   margin: 2rem;
   border-radius: 8px;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.edit-details-text {
+  margin-top: 0%;
+  margin-bottom: 0%;
 }
 
 .App {
@@ -216,6 +228,20 @@ body {
   animation: typing 3s steps(40, end), blink-caret 0.75s step-start 3.5s;
 }
 
+.settings-header {
+  font-family: 'Courier New', Courier, monospace;
+  margin-top: 5%;
+  font-size: 1.4rem;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  text-align: center;
+  border-right: 0.15em solid white; /* The caret */
+  width: fit-content; /* Full width to keep position */
+  animation: typing 3s steps(40, end), blink-caret 0.75s step-start 3.5s;
+  margin-top: 0px;
+}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -242,8 +268,11 @@ body {
 }
 
 .availability2 {
-  margin-right: 23%;
-  margin-left: 23%;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 20px;
+  align-items: center;
+  margin-right: 10%;
+  margin-left: 10%;
 }
 
 .centerit {

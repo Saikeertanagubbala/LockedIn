@@ -92,13 +92,13 @@ function Settings() {
       <h2>Settings</h2>
       {user ? (
         <>
-          <p>Logged in as: {user.displayName || user.email}</p>
-          <h3>Edit your details:</h3>
+          <p className = 'settings-header'>Logged in as: {user.displayName || user.email}</p>
+          <h3 className = 'edit-details-text'>Edit your details:</h3>
           {error && <p style={{ color: 'red' }}>{error}</p>}
 
           <div className="form-section">
             <h4>Year</h4>
-            <select
+            <select className = 'preferences'
               value={year}
               onChange={(e) => setYear(e.target.value)}
             >
@@ -112,7 +112,7 @@ function Settings() {
 
           <div className="form-section">
             <h4>Major</h4>
-            <input
+            <input className = 'preferences'
               type="text"
               placeholder="Major"
               value={major}
@@ -120,24 +120,69 @@ function Settings() {
             />
           </div>
 
-          <div className="form-section">
-            <h4>Availability</h4>
-            {Object.keys(availability).map((day) => (
-              <div key={day}>
-                <label>{day.charAt(0).toUpperCase() + day.slice(1)}: </label>
+          <div className="availability2">
+                <h3 className="centerit">Availability</h3>
+                <label>Sunday: </label>
                 <input
+                  className="preferences"
                   type="text"
-                  value={availability[day].join(', ')}
-                  onChange={(e) => handleAvailabilityChange(day, e.target.value)}
+                  value={availability.sunday}
+                  onChange={(e) => setAvailability({ ...availability, sunday: e.target.value })}
                   placeholder="e.g. 1-3 PM"
                 />
+                <label>Monday: </label>
+                <input
+                  className="preferences"
+                  type="text"
+                  value={availability.monday}
+                  onChange={(e) => setAvailability({ ...availability, monday: e.target.value })}
+                  placeholder="e.g. 2-4 PM"
+                />
+                <label>Tuesday: </label>
+                <input
+                  className="preferences"
+                  type="text"
+                  value={availability.tuesday}
+                  onChange={(e) => setAvailability({ ...availability, tuesday: e.target.value })}
+                  placeholder="e.g. 1-3 PM"
+                />
+                <label>Wednesday: </label>
+                <input
+                  className="preferences"
+                  type="text"
+                  value={availability.wednesday}
+                  onChange={(e) => setAvailability({ ...availability, wednesday: e.target.value })}
+                  placeholder="e.g. 2-4 PM"
+                />
+                <label>Thursday: </label>
+                <input
+                  className="preferences"
+                  type="text"
+                  value={availability.thursday}
+                  onChange={(e) => setAvailability({ ...availability, thursday: e.target.value })}
+                  placeholder="e.g. 1-3 PM"
+                />
+                <label>Friday: </label>
+                <input
+                  className="preferences"
+                  type="text"
+                  value={availability.friday}
+                  onChange={(e) => setAvailability({ ...availability, friday: e.target.value })}
+                  placeholder="e.g. 3-5 PM"
+                />
+                <label>Saturday: </label>
+                <input
+                  className="preferences"
+                  type="text"
+                  value={availability.saturday}
+                  onChange={(e) => setAvailability({ ...availability, saturday: e.target.value })}
+                  placeholder="e.g. 2-4 PM"
+                />
               </div>
-            ))}
-          </div>
 
-          <div className="form-section">
+          <div className="courses">
             <h4>Courses</h4>
-            <input
+            <input className = 'preferences'
               type="text"
               placeholder="Add a course"
               value={courses.join(', ')}
@@ -145,7 +190,7 @@ function Settings() {
             />
           </div>
 
-          <button onClick={saveUserData}>Save Data</button>
+          <button className = 'preferences' onClick={saveUserData}>Save Data</button>
 
           {/* Sign Out Button */}
           <button className="sign-out" onClick={handleSignOut}>Sign Out</button>
