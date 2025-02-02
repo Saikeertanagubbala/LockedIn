@@ -12,6 +12,10 @@ function Home() {
   const [user, setUser] = useState(null);
   const [error, setError] = useState('');
 
+  // New state for first and last name
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+
   // State for user profile information
   const [year, setYear] = useState('');
   const [major, setMajor] = useState('');
@@ -63,6 +67,8 @@ function Home() {
       const userRef = doc(db, 'users', currentUser.uid);
 
       const userData = {
+        firstName,       // Include first name
+        lastName,        // Include last name
         year,
         major,
         availability,
@@ -100,6 +106,25 @@ function Home() {
             {/* Form to input/update user details */}
             <div className="availability">
               <h3>Update your details:</h3>
+              
+              {/* Name fields displayed side by side */}
+              <div className="horizontal-group">
+                <input 
+                  className="preferences"
+                  type="text" 
+                  placeholder="First Name" 
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                />
+                <input 
+                  className="preferences"
+                  type="text" 
+                  placeholder="Last Name" 
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                />
+              </div>
+              
               <select className="preferences"
                 value={year}
                 onChange={(e) => setYear(e.target.value)}
@@ -205,7 +230,6 @@ function Home() {
             />
             <button className="header-buttons" onClick={handleSignIn}>Sign In</button>
             <button className="header-buttons" onClick={handleSignUp}>Create Account</button>
-
             {error && <p style={{ color: 'red' }}>{error}</p>}
           </div>
         )}
