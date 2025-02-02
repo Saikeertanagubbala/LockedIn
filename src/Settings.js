@@ -83,8 +83,7 @@ function Settings() {
       {user ? (
         <>
           <p>Logged in as: {user.displayName || user.email}</p>
-
-          <h3>Edit your details</h3>
+          <h3>Edit your details:</h3>
           {error && <p style={{ color: 'red' }}>{error}</p>}
 
           <div className="form-section">
