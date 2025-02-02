@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { getFirestore, collection, getDocs } from 'firebase/firestore';
-import './Users.css'; // Importing a CSS file for styling
+import './Users.css';
 
 const db = getFirestore();
 
 function Users() {
   const [users, setUsers] = useState([]);
   
-  // Fetching user data from Firestore
   useEffect(() => {
     const fetchUsers = async () => {
       const usersCollection = collection(db, 'users');
