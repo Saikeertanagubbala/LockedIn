@@ -5,6 +5,7 @@ import Home from './Home';
 import Matches from './Matches';
 import Users from './Users';
 import Settings from './Settings';
+import UserDetails from './UserDetails'; // Import the new UserDetails component
 import logo from './LockedIn.svg'; // Import the logo image
 
 function AppContent() {
@@ -37,6 +38,7 @@ function AppContent() {
         <Route path="/matches" element={<Matches />} />
         <Route path="/users" element={<Users />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="/user-details" element={<UserDetails />} /> {/* New route */}
       </Routes>
     </div>
   );

@@ -5,9 +5,46 @@ import './App.css';
 
 const db = getFirestore();
 
+function FormSection({ label, children }) {
+  return (
+    <div className="form-section">
+      <h4>{label}</h4>
+      {children}
+    </div>
+  );
+}
+
+function AvailabilityInput({ availability, onChange }) {
+  return (
+    <div>
+      {Object.keys(availability).map((day) => (
+        <div key={day}>
+          <label>{day.charAt(0).toUpperCase() + day.slice(1)}: </label>
+          <input
+            type="text"
+            value={availability[day].join(', ')}
+            onChange={(e) => onChange(day, e.target.value)}
+            placeholder="e.g. 1-3 PM"
+          />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function CoursesInput({ courses, onChange }) {
+  return (
+    <input
+      type="text"
+      placeholder="Add a course"
+      value={courses.join(', ')}
+      onChange={(e) => onChange(e.target.value.split(','))}
+    />
+  );
+}
+
 function Settings() {
   const [user, setUser] = useState(null);
-  const [userData, setUserData] = useState(null);
   const [availability, setAvailability] = useState({
     sunday: [],
     monday: [],
@@ -23,17 +60,13 @@ function Settings() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    // Subscribe to auth state changes
     const unsubscribe = auth.onAuthStateChanged(async (currentUser) => {
       if (currentUser) {
         setUser(currentUser);
-
-        // Fetch user data from Firestore
         const userRef = doc(db, 'users', currentUser.uid);
         try {
           const docSnap = await getDoc(userRef);
           if (docSnap.exists()) {
-            setUserData(docSnap.data());
             setAvailability(docSnap.data().availability || {});
             setYear(docSnap.data().year || '');
             setMajor(docSnap.data().major || '');
@@ -47,7 +80,6 @@ function Settings() {
       }
     });
 
-    // Cleanup on unmount
     return () => unsubscribe();
   }, []);
 
@@ -86,8 +118,7 @@ function Settings() {
           <h3>Edit your details:</h3>
           {error && <p style={{ color: 'red' }}>{error}</p>}
 
-          <div className="form-section">
-            <h4>Year</h4>
+          <FormSection label="Year">
             <select
               value={year}
               onChange={(e) => setYear(e.target.value)}
@@ -98,42 +129,30 @@ function Settings() {
               <option value="Senior">Senior</option>
               <option value="Grad Student">Grad Student</option>
             </select>
-          </div>
+          </FormSection>
 
-          <div className="form-section">
-            <h4>Major</h4>
+          <FormSection label="Major">
             <input
               type="text"
               placeholder="Major"
               value={major}
               onChange={(e) => setMajor(e.target.value)}
             />
-          </div>
+          </FormSection>
 
-          <div className="form-section">
-            <h4>Availability</h4>
-            {Object.keys(availability).map((day) => (
-              <div key={day}>
-                <label>{day.charAt(0).toUpperCase() + day.slice(1)}: </label>
-                <input
-                  type="text"
-                  value={availability[day].join(', ')}
-                  onChange={(e) => handleAvailabilityChange(day, e.target.value)}
-                  placeholder="e.g. 1-3 PM"
-                />
-              </div>
-            ))}
-          </div>
-
-          <div className="form-section">
-            <h4>Courses</h4>
-            <input
-              type="text"
-              placeholder="Add a course"
-              value={courses.join(', ')}
-              onChange={(e) => setCourses(e.target.value.split(','))}
+          <FormSection label="Availability">
+            <AvailabilityInput
+              availability={availability}
+              onChange={handleAvailabilityChange}
             />
-          </div>
+          </FormSection>
+
+          <FormSection label="Courses">
+            <CoursesInput
+              courses={courses}
+              onChange={setCourses}
+            />
+          </FormSection>
 
           <button onClick={saveUserData}>Save Data</button>
         </>
