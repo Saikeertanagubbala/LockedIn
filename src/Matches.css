@@ -38,3 +38,13 @@
     margin: 5px 0;
     color: #666;
   }
+  /* Remove bullet points from the availability list */
+ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  li {
+    margin: 5px 0;
+  }
+  

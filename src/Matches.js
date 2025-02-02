@@ -11,6 +11,22 @@ function Matches() {
   const [userData, setUserData] = useState(null);
   const [matches, setMatches] = useState([]);
 
+  // Helper function to order the days of the week
+  const getOrderedDays = (availability) => {
+    const daysOrder = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+    const orderedAvailability = {};
+
+    // Sort the availability by the days of the week
+    daysOrder.forEach(day => {
+      if (availability[day]) {
+        orderedAvailability[day] = availability[day];
+      }
+    });
+
+    return orderedAvailability;
+  };
+
+  // eslint-disable-next-line
   const calculateMatchPercentage = (userData, matchData) => {
     let score = 0;
     const totalCriteria = 5;
@@ -52,10 +68,6 @@ function Matches() {
           if (docSnap.exists()) {
             const data = docSnap.data();
             setUserData(data);
-            // setAvailability(data.availability || {});
-            // setYear(data.year || '');
-            // setMajor(data.major || '');
-            // setCourses(data.courses || []);
           }
         } catch (error) {
           console.error("Error fetching user data: ", error);
@@ -90,13 +102,17 @@ function Matches() {
       <h1>Top Matches</h1>
       {matches.map((match) => (
         <div key={match.id} className="match-card">
-          <h2>{match.data.name}</h2>
+          {/* Display full name */}
+          <h2>{match.data.firstName} {match.data.lastName}</h2>
           <p>Major: {match.data.major}</p>
           <p>Year: {match.data.year}</p>
           <p>Courses: {match.data.courses.join(', ')}</p>
-          <p>Availability: {Object.entries(match.data.availability).map(([day, times]) => (
-            <span key={day}>{day}: {times.join(', ')}<br /></span>
-          ))}</p>
+          <p>Availability:</p>
+          <ul>
+            {Object.entries(getOrderedDays(match.data.availability)).map(([day, times], i) => (
+              <li key={i}><strong>{day.charAt(0).toUpperCase() + day.slice(1)}:</strong> {Array.isArray(times) ? times.join(', ') : times}</li>
+            ))}
+          </ul>
           <p>Match Percentage: {match.matchPercentage}%</p>
         </div>
       ))}

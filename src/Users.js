@@ -18,6 +18,21 @@ function Users() {
     fetchUsers();
   }, []);
 
+  // Helper function to order the days of the week
+  const getOrderedDays = (availability) => {
+    const daysOrder = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+    const orderedAvailability = {};
+
+    // Sort the availability by the days of the week
+    daysOrder.forEach(day => {
+      if (availability[day]) {
+        orderedAvailability[day] = availability[day];
+      }
+    });
+
+    return orderedAvailability;
+  };
+
   return (
     <div className="users-container">
       {users.length === 0 ? (
@@ -31,8 +46,8 @@ function Users() {
               <p><strong>Major:</strong> {user.major}</p>
               <p><strong>Availability:</strong></p>
               <ul>
-                {Object.entries(user.availability).map(([day, times], i) => (
-                  <li key={i}><strong>{day.charAt(0).toUpperCase() + day.slice(1)}:</strong> {times.join(', ')}</li>
+                {Object.entries(getOrderedDays(user.availability)).map(([day, times], i) => (
+                  <li key={i}><strong>{day.charAt(0).toUpperCase() + day.slice(1)}:</strong> {Array.isArray(times) ? times.join(', ') : times}</li>
                 ))}
               </ul>
               <p><strong>Courses:</strong> {user.courses.join(', ')}</p>
