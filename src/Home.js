@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from './firebase';
 import { getFirestore, doc, setDoc } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import './App.css';
 
 const db = getFirestore();
@@ -24,6 +25,8 @@ function Home() {
     sunday: []
   });
   const [courses, setCourses] = useState([]);
+
+  const navigate = useNavigate(); // Initialize the navigate hook
 
   const handleSignUp = async () => {
     try {
@@ -52,7 +55,7 @@ function Home() {
     }
   };
 
-  // Save user data to Firestore
+  // Save user data to Firestore and then navigate to /matches
   const saveUserData = async () => {
     const currentUser = auth.currentUser;
 
@@ -70,6 +73,7 @@ function Home() {
       try {
         await setDoc(userRef, userData, { merge: true });
         console.log('User data saved successfully!');
+        navigate('/matches'); // Navigate to Matches page after saving data
       } catch (error) {
         console.error('Error saving user data: ', error);
       }
@@ -186,7 +190,7 @@ function Home() {
         ) : (
           <div className="App-header">
             <header><b>LockedIn.</b></header>
-            <br></br>
+            <br />
             <input className="header-buttons"
               type="email"
               placeholder="Email"
