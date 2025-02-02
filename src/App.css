@@ -163,7 +163,7 @@ body {
   padding: 10px;
   margin: 10px 0;
   box-sizing: border-box;
-  border: 2px solid #ccc;
+  border: 2px solid #aa9e9eb9;
   border-radius: 4px;
 }
 
@@ -277,6 +277,66 @@ body {
 
 .centerit {
   text-align: center;
+}
+
+.user-card {
+  background-image: url('user-cards.jpg'); /* Path to your image */
+  color: white;
+  border-radius: 8px; /* Optional: to round the corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), /* subtle shadow */
+              0 6px 20px rgba(0, 0, 0, 0.1); /* deeper shadow */
+  padding: 1rem; /* Optional: to add some padding inside the card */
+  transition: box-shadow 0.3s ease; /* Optional: smooth transition for hover effect */
+  background-size: cover;
+}
+
+.user-card h3,
+.user-card p,
+.user-card ul,
+.user-card li {
+  color: white !important; /* Ensure all text elements inside user-card are white */
+}
+
+.user-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), /* intensified shadow on hover */
+              0 12px 40px rgba(0, 0, 0, 0.2); /* deeper shadow on hover */
+              transform: translateY(-5px); /* Lift the card up by 10px */
+}
+
+.card-courses {
+  color: white;
+}
+
+.congrats-message {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 24px;
+  color: white;
+  background-image: none;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.match-button {
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.match-button:hover {
+  background-color: #0056b3;
 }
 
 .App-link {
