@@ -13,8 +13,8 @@ function AppContent() {
 
   return (
     <div className="App">
-      {/* Conditionally render navbar if current path is not the home route */}
-      {location.pathname !== '/' && (
+      {/* Conditionally render navbar if current path is not the home route or user-details route */}
+      {location.pathname !== '/' && location.pathname !== '/user-details' && (
         <nav className="navbar">
           <Link to="/matches">
             <img src={logo} alt="LockedIn Logo" className="logo" />
