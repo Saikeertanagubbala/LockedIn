@@ -7,7 +7,7 @@ import Users from './Users';
 import Settings from './Settings';
 
 function AppContent() {
-  const location = useLocation(); // useLocation now works because AppContent is inside BrowserRouter
+  const location = useLocation(); 
 
   return (
     <div className="App">
@@ -41,7 +41,6 @@ function AppContent() {
 
 function App() {
   return (
-    // Wrap the whole application in BrowserRouter so that routing and hooks like useLocation work.
     <BrowserRouter>
       <AppContent />
     </BrowserRouter>
