@@ -1,50 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { auth } from './firebase';
+import { auth, signOut } from './firebase'; // Import signOut function
 import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import './App.css';
 
 const db = getFirestore();
 
-function FormSection({ label, children }) {
-  return (
-    <div className="form-section">
-      <h4>{label}</h4>
-      {children}
-    </div>
-  );
-}
-
-function AvailabilityInput({ availability, onChange }) {
-  return (
-    <div>
-      {Object.keys(availability).map((day) => (
-        <div key={day}>
-          <label>{day.charAt(0).toUpperCase() + day.slice(1)}: </label>
-          <input
-            type="text"
-            value={availability[day].join(', ')}
-            onChange={(e) => onChange(day, e.target.value)}
-            placeholder="e.g. 1-3 PM"
-          />
-        </div>
-      ))}
-    </div>
-  );
-}
-
-function CoursesInput({ courses, onChange }) {
-  return (
-    <input
-      type="text"
-      placeholder="Add a course"
-      value={courses.join(', ')}
-      onChange={(e) => onChange(e.target.value.split(','))}
-    />
-  );
-}
-
 function Settings() {
   const [user, setUser] = useState(null);
+  // eslint-disable-next-line 
+  const [userData, setUserData] = useState(null);
   const [availability, setAvailability] = useState({
     sunday: [],
     monday: [],
@@ -59,14 +24,18 @@ function Settings() {
   const [courses, setCourses] = useState([]);
   const [error, setError] = useState('');
 
+  const navigate = useNavigate(); // Initialize the navigate hook
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (currentUser) => {
       if (currentUser) {
         setUser(currentUser);
+
         const userRef = doc(db, 'users', currentUser.uid);
         try {
           const docSnap = await getDoc(userRef);
           if (docSnap.exists()) {
+            setUserData(docSnap.data());
             setAvailability(docSnap.data().availability || {});
             setYear(docSnap.data().year || '');
             setMajor(docSnap.data().major || '');
@@ -109,6 +78,15 @@ function Settings() {
     });
   };
 
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth); // Sign out user
+      navigate('/'); // Redirect to home page
+    } catch (err) {
+      setError('Error signing out: ' + err.message);
+    }
+  };
+
   return (
     <div className="settings">
       <h2>Settings</h2>
@@ -118,7 +96,8 @@ function Settings() {
           <h3>Edit your details:</h3>
           {error && <p style={{ color: 'red' }}>{error}</p>}
 
-          <FormSection label="Year">
+          <div className="form-section">
+            <h4>Year</h4>
             <select
               value={year}
               onChange={(e) => setYear(e.target.value)}
@@ -129,32 +108,47 @@ function Settings() {
               <option value="Senior">Senior</option>
               <option value="Grad Student">Grad Student</option>
             </select>
-          </FormSection>
+          </div>
 
-          <FormSection label="Major">
+          <div className="form-section">
+            <h4>Major</h4>
             <input
               type="text"
               placeholder="Major"
               value={major}
               onChange={(e) => setMajor(e.target.value)}
             />
-          </FormSection>
+          </div>
 
-          <FormSection label="Availability">
-            <AvailabilityInput
-              availability={availability}
-              onChange={handleAvailabilityChange}
-            />
-          </FormSection>
+          <div className="form-section">
+            <h4>Availability</h4>
+            {Object.keys(availability).map((day) => (
+              <div key={day}>
+                <label>{day.charAt(0).toUpperCase() + day.slice(1)}: </label>
+                <input
+                  type="text"
+                  value={availability[day].join(', ')}
+                  onChange={(e) => handleAvailabilityChange(day, e.target.value)}
+                  placeholder="e.g. 1-3 PM"
+                />
+              </div>
+            ))}
+          </div>
 
-          <FormSection label="Courses">
-            <CoursesInput
-              courses={courses}
-              onChange={setCourses}
+          <div className="form-section">
+            <h4>Courses</h4>
+            <input
+              type="text"
+              placeholder="Add a course"
+              value={courses.join(', ')}
+              onChange={(e) => setCourses(e.target.value.split(','))}
             />
-          </FormSection>
+          </div>
 
           <button onClick={saveUserData}>Save Data</button>
+
+          {/* Sign Out Button */}
+          <button className="sign-out" onClick={handleSignOut}>Sign Out</button>
         </>
       ) : (
         <p>No user logged in</p>
