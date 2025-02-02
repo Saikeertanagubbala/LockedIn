@@ -1,6 +1,7 @@
+## LockedIn
 LockedIn is a web application designed to help students find study partners and collaborators based on their academic interests, availability, and profiles. By connecting students with similar needs, LockedIn aims to foster collaboration and improve the learning experience in a university environment.
 
-## How We Built It
+### How We Built It
 We built LockedIn using React for the front end and Firebase for the back end. The development process involved:
 
 - Setting up Firebase for authentication and database services.
