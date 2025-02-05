@@ -23,7 +23,13 @@ We built LockedIn using React for the front end and Firebase for the back end. T
 
 ### **3. Backend Development & Matching Algorithm**  
 - Implemented a Node.js backend for handling user interactions and matchmaking logic.  
-- Developed an intelligent matching algorithm to connect users based on academic interests and availability.  
+- Developed an intelligent matching algorithm to connect users based on academic interests and availability.
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/f2ce3dee-fb0c-487c-9354-b832b0d310cb" alt="LockedIn Logo" width="500">
+  <img src="https://github.com/user-attachments/assets/49ae49e1-5a37-440c-87d7-f47bef052503" alt="LockedIn Logo" width="500">
+<img src="https://github.com/user-attachments/assets/c1bda02a-e5c1-4581-a0ce-946795ea4319" alt="LockedIn Logo" width="500">
+</p>
 
 ## **Deployment** 
+
 **Check out our website here:** https://locked-in-blush.vercel.app/
